@@ -6,7 +6,9 @@ const {adduser,removeuser,getuser,getusersinroom} = require('./users')
 const port = process.env.PORT || 3000;
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server);
+const io = socketio(server,{
+  cors:true,
+});
 const router = express.Router();
 
 app.use((req, res, next)=> {
