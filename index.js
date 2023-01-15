@@ -16,7 +16,7 @@ app.use((req, res, next)=> {
   next();
 });
 router.get("/", (req, res) => {
-  res.send( "chat app").status(200);
+  res.send( "chat app datas").status(200);
 });
 app.use(router);
 
