@@ -3,7 +3,7 @@ const http = require('http')
 const  socketio = require('socket.io')
 const {adduser,removeuser,getuser,getusersinroom} = require('./users')
 
-const endpoint =5000;
+const port = process.env.PORT || 3000;
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
@@ -54,4 +54,6 @@ io.on('connect', (socket) => {
   })
 });;
 
-server.listen(process.env.PORT,()=> console.log(`server runnin ${endpoint}`));
+server.listen(port, '0.0.0.0', () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+});
