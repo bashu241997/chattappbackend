@@ -1,16 +1,12 @@
 {
   "name": "server-demo",
   "version": "1.0.0",
-  "engines": {
-    "node": "10.x",
-    "npm": "6.x"
-  },
   "description": "backend ",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js --mode development --hot --open --port $PORT",
-    "build": "npm i -dev && webpack --mode production",
-    "heroku-postbuild": "npm build"
+    "build-server": "babel -d ./build ./src -s",
+    "build": "npm run build-server",
+    "start": "node ./build/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +20,9 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-0": "^6.24.1"
