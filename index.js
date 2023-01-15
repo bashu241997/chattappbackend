@@ -1,31 +1,20 @@
-const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
+const express = require('express')
+const http = require('http')
+const  socketio = require('socket.io')
 const {adduser,removeuser,getuser,getusersinroom} = require('./users')
-const cors = require('cors');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3003;
 const app = express();
-
-app.use(
-  cors({
-    origin: "*",
-    credentials:false,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
-  })
-);
-
-
 const server = http.createServer(app);
-const io = new Server(server, {
-  cors: { origin:"*"},
-  credentials:false,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
-});
-
-
+const io = socketio(server);
 const router = express.Router();
+
+app.use((req, res, next)=> {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Credentials', false);
+  next();
+});
 router.get("/", (req, res) => {
   res.send( "Welcome to back end of chat app").status(200);
 });
