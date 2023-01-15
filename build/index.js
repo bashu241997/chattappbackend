@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   next();
 });
 router.get("/", (req, res) => {
-  res.send("sET ").status(200);
+  res.send("Welcome to back end of chat app").status(200);
 });
 app.use(router);
 
@@ -77,5 +77,5 @@ io.on('connect', socket => {
   });
 });
 ;
-server.listen(process.env.PORT || endpoint, () => console.log(`server runnin ${endpoint}`));
+server.listen(process.env.PORT, () => console.log(`server runnin ${endpoint}`));
 //# sourceMappingURL=index.js.map
